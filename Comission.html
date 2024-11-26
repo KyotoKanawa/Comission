@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Orse">
+    <title>Commission Calculator</title>
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+      <!-- Function to calculate commission  --> 
+    <h1>Commission Calculator</h1>
+    <script>
+        function calculateCommission() {
+            let totalSales = 0;
+            let commissionRate = 0;
+            let input;
+
+            // loop to get the amount of slaes 
+            do {
+                input = prompt("Enter sale amount (or 'Done' to finish):");
+                if (input.toLowerCase() !== 'done' && input !== null && input !== '') {
+                    let saleAmount = parseFloat(input);
+                    if (!isNaN(saleAmount) && saleAmount >= 0) {
+                        totalSales += saleAmount;
+                    } else {
+                        alert("Please enter a valid number.");
+                    }
+                }
+            } while (input.toLowerCase() !== 'done' && input !== null);
+
+            // comission rate depending on the total number of sales 
+            if (totalSales > 0) {
+                if (totalSales <= 499.99) {
+                    commissionRate = 0.05;
+                } else if (totalSales <= 999.99) {
+                    commissionRate = 0.10;
+                } else {
+                    commissionRate = 0.15;
+                }
+            }
+
+            // Comission eranings and total earnings 
+            let commissionEarned = totalSales * commissionRate;
+            let totalEarnings = totalSales + commissionEarned;
+
+            // displays results 
+            document.write("Subtotal: $" + totalSales.toFixed(2) + "<br>");
+            document.write("Commission Rate: " + (commissionRate * 100).toFixed(2) + "%<br>");
+            document.write("Total Commission Earned: $" + commissionEarned.toFixed(2) + "<br>");
+            document.write("Total Earnings: $" + totalEarnings.toFixed(2) + "<br>");
+        }
+
+        // calls functions to calculate comission 
+        calculateCommission();
+    </script>
+</body>
+</html>
